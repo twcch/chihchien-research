@@ -119,8 +119,12 @@ class TransformerSeq2Seq(nn.Module):
         return logits
 
     def forward(self, src: torch.Tensor, tgt_input: torch.Tensor) -> torch.Tensor:
+        """前向傳播函數，將輸入的源序列和目標序列（去掉最後一個 token）傳遞給編碼器和解碼器，並返回解碼器的輸出 logits。"""
+        
+        # 首先，對源序列進行編碼，得到編碼器的輸出和源序列的遮罩。然後，將目標序列 (去掉最後一個 token) 傳遞給解碼器，並使用編碼器的輸出和源序列的遮罩來計算解碼器的輸出 logits
         encoder_output, src_mask = self.encode(src)
 
+        # 最後，返回解碼器的輸出 logits，這些 logits 可以用於計算損失或進行推理
         logits = self.decode(
             tgt=tgt_input,
             encoder_output=encoder_output,

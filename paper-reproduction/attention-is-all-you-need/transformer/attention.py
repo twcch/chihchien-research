@@ -49,6 +49,7 @@ class MultiHeadAttention(nn.Module):
     
     
     def forward(self, query, key, value, mask=None):
+        """前向傳播函數，計算多頭注意力的輸出。輸入的 query、key 和 value 是詞向量，mask 是可選的遮罩，用於在計算注意力權重時忽略某些位置。"""
         q = self.split_heads(self.w_q(query))
         k = self.split_heads(self.w_k(key))
         v = self.split_heads(self.w_v(value))
