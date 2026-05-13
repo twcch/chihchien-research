@@ -131,7 +131,7 @@ def translate(
 
 
 def main():
-    input_sentence = "我喜歡學習人工智慧。"
+    input_sentence = "I am a student."  # 這裡可以替換成任意中文句子進行翻譯
 
     print(f"Device: {cfg.device}")
     print(f"Input Chinese: {input_sentence}")
